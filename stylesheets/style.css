@@ -1,0 +1,61 @@
+#title {
+  font-size: 40px;
+  font-weight: 10000;
+}
+
+#content {
+  background-color: whitesmoke;
+}
+
+.col-md-4 {
+  background-color: red;
+  border-bottom: 2px solid lightgray;
+  height: 70px;
+}
+
+.col-md-8 {
+  background-color: red;
+  border-bottom: 2px solid lightgray;
+  border-right: 2px solid lightgray;
+  height: 70px;
+}
+
+#video_query {
+  text-align: center;
+}
+
+.button {
+  width: 250px;
+  background-color: silver;
+  cursor: pointer;
+  font-family: "Helvetica Neue";
+  font-weight: 100;
+  font-size: 20px;
+  font-style: inherit;
+  display:inline-block;
+  text-align: center;
+}
+
+.parent-element {
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.col-xs-4 {
+  
+}
+
+#login_form {
+  vertical-align:text-top;
+  text-align: left;
+}
+
+#login_button {
+  vertical-align:text-top;
+  text-align: left;
+}
+
+body {
+
+}

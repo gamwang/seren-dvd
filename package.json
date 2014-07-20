@@ -1,0 +1,32 @@
+{
+    "name": "RandView",
+    "description": "express for fun",
+    "scripts": {
+        "test": "./node_modules/mocha/bin/mocha"
+    },
+    "dependencies": {
+        "underscore": "*",
+        "step": "*",
+        "request": "*",
+        "express": "*",
+        "moment": "*",
+        "d3": "*",
+        "jade": "*",
+        "redis": "*",
+        "jquery": "*",
+        "request": "*",
+        "body-parser": "*",
+        "path": "*",
+        "multer": "*",
+        "cookie-parser": "*",
+        "express-session": "*",
+        "crypto": "*"
+    },
+    "devDependencies": {
+        "mocha": "*",
+        "should": "*",
+        "chai": "*",
+        "expect": "*",
+        "browserify": "*"
+    }
+}
