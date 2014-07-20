@@ -2,24 +2,34 @@ extends layout
 block content
   header
   div(id="banner" class="col-md-8" style="text-align:left")
-   h1 RandView
+   a(href="/" class="logo") RandView
   div(id="banner" class="col-md-4" style="text-align:right") 
     form(id="login_form" action='/login',method='post')
       div(class="col-xs-4") 
-        h5() email
         input(id='email' type='text',value='' placeholder='email' name='email')
       div(class="col-xs-4") 
-        h5() password
         input(id='password' type='password' value='' placeholder='password' name='password')  
       div(class="col-xs-4" id="login_button")
         input(type='submit' value='Log in')
   body
-    div(id="content")
-        div(id="video_query") 
-          form(action='/getVideo',method='post')
-            div()
-              input(id='email',type='text',value='',placeholder='Enter your video preference here',name='video_query')
-            div()   
-              input(type='submit',value='Enter')
-
+    if name
+      div(id="content")
+        form(action='/getVideo' method='post')
+          input(id="video_query_input" type='text' value='' placeholder='Enter your video preference here' name='video_query')
+          input(type='submit' value='Enter')
+    else
+      div(id="signup")
+        h1(id="signup_font") Signup
+        form(action='/signup' method='post')
+          div
+            input(type='text' value='' placeholder='first name' name='frstnme')
+            input(type='text' value='' placeholder='last name' name='lstnme')
+          div
+            input(type='email' value='' placeholder='email' name='email')
+          div
+            input(type='password' value='' placeholder='password' name='psswrd')
+          div
+            input(type='submit' value='Signup')
+    if name
+      h1 Welcome #{name}!
   script(type="text/javascript" src="./javascripts/clientSide.js")
