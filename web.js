@@ -9,6 +9,8 @@ var session = require('express-session');
 var user = require('./routes/user');
 
 var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 // In order to track of req's body. ;)
 app.use(bodyParser.urlencoded({
@@ -38,9 +40,31 @@ app.set('view engine', 'jade');
 app.get('/', user.index);
 app.get('/home', user.home);
 app.post('/login', user.login);
+app.post('/logout', user.logout);
 app.post('/signup', user.signup);
 app.post('/getVideo', user.getVideo);
 
-var server = app.listen(3000, function() {
+
+//Chat Service
+io.on('connection', function(socket) {
+    socket.on('chat message', function(msg) {
+        io.emit('chat message', msg);
+    });
+});
+
+io.set('authorization', function(data, accept) {
+    // console.log(data.headers);
+    // if (data.headers.cookie) {
+
+    //     data.cookie = cookieParser(data.headers.cookie);
+    //     data.sessionID = data.cookie['connect.sess'].split('.')[0].substring(2);
+
+    //     sessionStore.get(data.sessionID, function(err, session) {
+    //         // now you have all session variables
+    //     });
+    // }
+});
+
+var server = http.listen(3000, function() {
     console.log('Listening on port %d', server.address().port);
 });

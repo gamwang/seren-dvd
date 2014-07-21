@@ -4,19 +4,29 @@ block content
   div(id="banner" class="col-md-8" style="text-align:left")
    a(href="/" class="logo") RandView
   div(id="banner" class="col-md-4" style="text-align:right") 
-    form(id="login_form" action='/login',method='post')
-      div(class="col-xs-4") 
-        input(id='email' type='text',value='' placeholder='email' name='email')
-      div(class="col-xs-4") 
-        input(id='password' type='password' value='' placeholder='password' name='password')  
-      div(class="col-xs-4" id="login_button")
-        input(type='submit' value='Log in')
+    if name
+      h2 Welcome #{name}!
+      form(id="logout_form" action='/logout',method='post')
+        input(type='submit' value='Logout')
+    else
+      form(id="login_form" action='/login',method='post')
+        div(class="col-xs-4") 
+          input(id='email' type='text',value='' placeholder='email' name='email')
+        div(class="col-xs-4") 
+          input(id='password' type='password' value='' placeholder='password' name='password')  
+        div(class="col-xs-4" id="login_button")
+          input(type='submit' value='Log in')
   body
     if name
       div(id="content")
         form(action='/getVideo' method='post')
           input(id="video_query_input" type='text' value='' placeholder='Enter your video preference here' name='video_query')
           input(type='submit' value='Enter')
+      ul(id="messages")
+      div(id="chat_div")
+        form(id="message_form" action="")
+          input(id="message" autocomplete="off")
+          button(id="message_button") Send
     else
       div(id="signup")
         h1(id="signup_font") Signup
@@ -30,6 +40,4 @@ block content
             input(type='password' value='' placeholder='password' name='psswrd')
           div
             input(type='submit' value='Signup')
-    if name
-      h1 Welcome #{name}!
   script(type="text/javascript" src="./javascripts/clientSide.js")

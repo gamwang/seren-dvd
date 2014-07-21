@@ -20,7 +20,8 @@
         "multer": "*",
         "cookie-parser": "*",
         "express-session": "*",
-        "crypto": "*"
+        "crypto": "*",
+        "socket.io": "*"
     },
     "devDependencies": {
         "mocha": "*",
