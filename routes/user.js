@@ -3,8 +3,9 @@ var _ = require('underscore');
 
 var client = redis.createClient();
 var crypto = require('crypto');
-var sha = crypto.createHash('sha256');
+
 var generate_key = function(req, res, next) {
+    var sha = crypto.createHash('sha256');
     var out;
     sha.update(Math.random().toString());
     out = sha.digest('hex');
@@ -42,15 +43,17 @@ var user = {
     },
     login: function(req, res, next) {
         check_session(req, res, next);
+        var sha = crypto.createHash('sha256');
         var body = req.body;
+        console.log(body);
+        sha.update(body.password.toString());
+        var cmp_psswrd = sha.digest('hex');
         client.hget('users', body.email, function(err, data) {
             data = JSON.parse(data);
-            if (_.isNull(data) || body.password != data.psswrd) {
-                res.redirect('/');
-            } else {
+            if (!_.isNull(data) && cmp_psswrd == data.psswrd) {
                 req.session.user = data.frstnme + ' ' + data.lstnme;
-                res.redirect('/home');
             }
+            res.redirect('/');
         });
     },
     logout: function(req, res, next) {
@@ -59,9 +62,11 @@ var user = {
     },
     signup: function(req, res, next) {
         check_session(req, res, next);
+        var sha = crypto.createHash('sha256');
         var body = req.body;
-        sha.update(body.password.toString());
-        body.password = sha.digest('hex');
+        console.log(body);
+        sha.update(body.psswrd.toString());
+        body.psswrd = sha.digest('hex');
         client.hset('users', body.email, JSON.stringify(body));
         res.redirect('/');
     },
