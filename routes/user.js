@@ -2,11 +2,10 @@ var redis = require('redis');
 var _ = require('underscore');
 
 var client = redis.createClient();
-
 var crypto = require('crypto');
+var sha = crypto.createHash('sha256');
 var generate_key = function(req, res, next) {
     var out;
-    var sha = crypto.createHash('sha256');
     sha.update(Math.random().toString());
     out = sha.digest('hex');
     req.session.sid = out[0];
@@ -61,6 +60,8 @@ var user = {
     signup: function(req, res, next) {
         check_session(req, res, next);
         var body = req.body;
+        sha.update(body.password.toString());
+        body.password = sha.digest('hex');
         client.hset('users', body.email, JSON.stringify(body));
         res.redirect('/');
     },
