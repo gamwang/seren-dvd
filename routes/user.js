@@ -1,8 +1,11 @@
 var redis = require('redis');
 var _ = require('underscore');
+var request = require('request');
 
 var client = redis.createClient();
 var crypto = require('crypto');
+
+var ip_cache = {};
 
 var generate_key = function(req, res, next) {
     var sha = crypto.createHash('sha256');
@@ -23,8 +26,17 @@ var check_session = function(req, res, next) {
     // console.log("user session Information: " + JSON.stringify(req.session));
 };
 
+var store_location = function(req, res, next) {
+    var ip = req.headers['x-real-ip']
+    request('http://freegeoip.net/json/' + ip, function(err, res, body) {
+        countryName = JSON.parse(body).country_name.toString();
+        console.log(country_name);
+    });
+}
+
 var user = {
     index: function(req, res, next) {
+        store_location(req, res, next);
         check_session(req, res, next);
         console.log("SESSION:" + JSON.stringify(req.session));
         res.render('index', {
