@@ -77,7 +77,7 @@ var user = {
                 client.hset('users', body.email, JSON.stringify(body));
                 res.redirect('/');
             } else {
-                res.redirect('/tryagain');
+                res.redirect('/signupFail');
             }
         });
     },
