@@ -5,8 +5,8 @@ block content
    a(href="/" class="logo") RandView
   div(id="banner" class="col-md-4" style="text-align:right") 
     if name
-      h2 Welcome #{name}!
-      form(id="logout_form" action='/logout',method='post')
+      h3 Welcome #{name}!
+      form(id="logout_form" action='/logout',method='get')
         input(type='submit' value='Logout')
     else
       form(id="login_form" action='/login',method='post')

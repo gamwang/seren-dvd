@@ -21,7 +21,13 @@
         "cookie-parser": "*",
         "express-session": "*",
         "crypto": "*",
-        "socket.io": "*"
+        "socket.io": "*",
+        "cookie": "*",
+        "connect": "*",
+        "passport": "*",
+        "passport-local": "*",
+        "passport.socketio": "*",
+        "connect-redis": "*"
     },
     "devDependencies": {
         "mocha": "*",
