@@ -2,12 +2,12 @@ extends layout
 block content
   header
   div(id="banner" class="col-md-8" style="text-align:left")
-   a(href="/" class="logo") RandView
+    a(href="/" class="logo") RandView
   div(id="banner" class="col-md-4" style="text-align:right") 
     if name
-      h3 Welcome #{name}!
+      h4 Welcome #{name}!
       form(id="logout_form" action='/logout',method='get')
-        input(type='submit' value='Logout')
+        input(type='submit' value='Logout') 
     else
       form(id="login_form" action='/login',method='post')
         div(class="col-xs-4") 
@@ -15,13 +15,17 @@ block content
         div(class="col-xs-4") 
           input(id='password' type='password' value='' placeholder='password' name='password')  
         div(class="col-xs-4" id="login_button")
-          input(type='submit' value='Log in')
+          input(type='submit' value='Log in') 
   body
     if name
       div(id="content")
-        form(action='/getVideo' method='post')
-          input(id="video_query_input" type='text' value='' placeholder='Enter your video preference here' name='video_query')
-          input(type='submit' value='Enter')
+        form(id="video_query_form" action="")
+          input(id="video_query_input" autocomplete="off" placeholder='Enter Random type of video')
+          button(id="video_query_button") Enter
+        div(id="video_display")
+      div(id="online_list")
+        h2() Online:
+      ul(id="people_online")
       ul(id="messages")
       div(id="chat_div")
         form(id="message_form" action="")
